@@ -28,7 +28,7 @@ UPDATER_LIB_DIR      = LIB_DIR + '/updater'
 COMMON_LIB_DIR       = LIB_DIR + '/common'
 LOG_FILE             = ROOT_DIR + '/log.txt'
 # Plugins directories
-COMON_PLUGINS_DIR    = COMMON_LIB_DIR + '/plugins'
+COMMON_PLUGINS_DIR   = COMMON_LIB_DIR + '/plugins'
 WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + '/plugins'
 WPSTOOLS_PLUGINS_DIR = WPSTOOLS_LIB_DIR + '/plugins'
 
@@ -59,7 +59,7 @@ def require_files_from_directory(absolute_dir_path, files_pattern = '*.rb')
   end
 end
 
-#require_files_from_directory(COMMON_LIB_DIR)
+require_files_from_directory(COMMON_PLUGINS_DIR)
 require_files_from_directory(COMMON_LIB_DIR, '**/*.rb')
 
 # Add protocol

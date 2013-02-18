@@ -58,14 +58,15 @@ banner()
 
 begin
 
-  option_parser = CustomOptionParser.new('Usage: ./wpscan.rb [options]')
+  option_parser = CustomOptionParser.new('Usage: ./wpscan.rb [options]', 40)
   option_parser.separator ''
   option_parser.add(['-v', '--verbose', 'Verbose output'])
   option_parser.add(['-u', '--url TARGET_URL', 'The WordPress URL/domain to scan'])
 
   plugins = Plugins.new(option_parser)
   plugins.register(
-    UpdaterPlugin.new
+    UpdaterPlugin.new,
+    BrowserOptionsOverridePlugin.new
   )
 
   options = option_parser.results
@@ -83,6 +84,8 @@ begin
       plugin.run(options)
     end
   end
+
+  exit(0)
 
   wpscan_options = WpscanOptions.load_from_arguments
 

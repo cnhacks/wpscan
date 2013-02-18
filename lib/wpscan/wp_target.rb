@@ -39,7 +39,7 @@ class WpTarget < WebSite
     @wp_plugins_dir = options[:wp_plugins_dir]
     @multisite      = nil
 
-    Browser.instance(options.merge(:max_threads => options[:threads]))
+    #Browser.instance(options.merge(:max_threads => options[:threads]))
   end
 
   # check if the target website is
