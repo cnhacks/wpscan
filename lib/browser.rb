@@ -142,6 +142,16 @@ class Browser
     raise 'Invalid proxy auth format, expected username:password or {proxy_username: username, proxy_password: password}'
   end
 
+  def basic_auth=(basic_auth)
+    if basic_auth
+      if basic_auth.index(':').nil?
+        raise 'Invalid basic authentication format, login:password expected'
+      end
+
+      @basic_auth = "Basic #{Base64.encode64(basic_auth).chomp}"
+    end
+  end
+
   # TODO reload hydra (if the .load_config is called on a browser object,
   # hydra will not have the new @max_threads and @request_timeout)
   def load_config(config_file = nil)

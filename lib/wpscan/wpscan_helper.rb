@@ -103,7 +103,7 @@ def help
   #puts '--proxy <[protocol://]host:port> Supply a proxy (will override the one from conf/browser.conf.json).'
   #puts '                                 HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used'
   #puts '--proxy-auth <username:password>  Supply the proxy login credentials (will override the one from conf/browser.conf.json).'
-  puts '--basic-auth <username:password>  Set the HTTP Basic authentication'
+  #puts '--basic-auth <username:password>  Set the HTTP Basic authentication'
   puts '--wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute.'
   #puts '--threads  | -t <number of threads>  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)'
   puts '--username | -U <username>  Only brute force the supplied username.'

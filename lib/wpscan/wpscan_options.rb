@@ -247,7 +247,7 @@ class WpscanOptions
       #['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],
       #['--config-file', '-c', GetoptLong::REQUIRED_ARGUMENT],
       ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
-      ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT]
+      #['--basic-auth', GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 

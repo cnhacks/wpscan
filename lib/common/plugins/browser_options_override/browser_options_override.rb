@@ -26,7 +26,8 @@ class BrowserOptionsOverridePlugin < Plugin
       ['--config-file FILE', '-c', 'Use the specified config file'],
       ['--threads NUMBER_OF_THREADS', '-t', Integer, 'The number of threads to use when multi-threading requests'],
       ['--proxy [PROTOCOL://]HOST:PORT', 'Supply a proxy. Supported protocols: HTTP, HTTPS, SOCKS4, SOCKS4A and SOCKS5. Default protocol: HTTP'],
-      ['--proxy-auth USERNAME:PASSWORD', 'Supply the proxy login credentials']
+      ['--proxy-auth USERNAME:PASSWORD', 'Supply the proxy login credentials'],
+      ['--basic-auth LOGIN:PASSWORD', 'Set the HTTP Basic authentication']
     )
   end
 
