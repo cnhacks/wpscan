@@ -243,8 +243,8 @@ class WpscanOptions
       #['--proxy', GetoptLong::REQUIRED_ARGUMENT],
       #['--proxy-auth', GetoptLong::REQUIRED_ARGUMENT],
       ['--follow-redirection', GetoptLong::NO_ARGUMENT],
-      ['--wp-content-dir', GetoptLong::REQUIRED_ARGUMENT],
-      ['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],
+      #['--wp-content-dir', GetoptLong::REQUIRED_ARGUMENT],
+      #['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],
       #['--config-file', '-c', GetoptLong::REQUIRED_ARGUMENT],
       ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
       ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT]

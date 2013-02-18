@@ -67,7 +67,8 @@ begin
   plugins.register(
     UpdaterPlugin.new,
     BrowserOptionsOverridePlugin.new,
-    CheckerPlugin.new
+    CheckerPlugin.new,
+    WpCustomDirectoriesPlugin.new
   )
 
   options = option_parser.results
@@ -78,9 +79,9 @@ begin
 
   plugins.each do |plugin|
     if plugin.is_a?(WpscanPlugin)
-      #wp_target ||= WpTarget.new(options[:url], options)
+      wp_target ||= WpTarget.new(options[:url], options)
 
-      #plugin.run(wp_target, options)
+      plugin.run(wp_target, options)
     else
       plugin.run(options)
     end

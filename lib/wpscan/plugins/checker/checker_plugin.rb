@@ -69,19 +69,6 @@ class CheckerPlugin < WpscanPlugin
       end
     end
 
-    unless wp_target.wp_content_dir
-      raise 'The wp_content_dir has not been found, please supply it with --wp-content-dir'
-    end
-
-    unless wp_target.wp_plugins_dir_exists?
-      puts "The plugins directory '#{wp_target.wp_plugins_dir}' does not exist."
-      puts 'You can specify one per command line option (don\'t forget to include the wp-content directory if needed)'
-      puts 'Continue? [y/n]'
-      unless Readline.readline =~ /^y/i
-        exit
-      end
-    end
-
   end
 
 end
