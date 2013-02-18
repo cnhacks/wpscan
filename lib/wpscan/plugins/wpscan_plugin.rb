@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-class WpscanPlugin
+class WpscanPlugin < Plugin
 
   def run(wp_target, options = {})
     raise NotImplementedError

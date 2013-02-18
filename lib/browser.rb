@@ -106,6 +106,16 @@ class Browser
     @max_threads = max_threads
   end
 
+  def proxy=(proxy)
+    if proxy
+      if proxy.index(':') == nil
+        raise 'Invalid proxy format. Should be host:port.'
+      else
+        @proxy = proxy
+      end
+    end
+  end
+
   def proxy_auth=(auth)
     unless auth.nil?
       if auth.is_a?(Hash)
