@@ -28,7 +28,6 @@ class UpdaterPlugin < Plugin
   end
 
   def run(options = {})
-    p options
     if options[:update]
       updater = UpdaterFactory.get_updater(ROOT_DIR)
 
