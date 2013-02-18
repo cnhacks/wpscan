@@ -236,18 +236,18 @@ class WpscanOptions
       ['--enumerate', '-e', GetoptLong::OPTIONAL_ARGUMENT],
       ['--username', '-U', GetoptLong::REQUIRED_ARGUMENT],
       ['--wordlist', '-w', GetoptLong::REQUIRED_ARGUMENT],
-      #['--threads', '-t', GetoptLong::REQUIRED_ARGUMENT],
+      ['--threads', '-t', GetoptLong::REQUIRED_ARGUMENT],
       ['--force', '-f', GetoptLong::NO_ARGUMENT],
       ['--help', '-h', GetoptLong::NO_ARGUMENT],
-      #['--verbose', '-v', GetoptLong::NO_ARGUMENT],
-      #['--proxy', GetoptLong::REQUIRED_ARGUMENT],
-      #['--proxy-auth', GetoptLong::REQUIRED_ARGUMENT],
+      ['--verbose', '-v', GetoptLong::NO_ARGUMENT],
+      ['--proxy', GetoptLong::REQUIRED_ARGUMENT],
+      ['--proxy-auth', GetoptLong::REQUIRED_ARGUMENT],
       ['--follow-redirection', GetoptLong::NO_ARGUMENT],
-      #['--wp-content-dir', GetoptLong::REQUIRED_ARGUMENT],
-      #['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],
-      #['--config-file', '-c', GetoptLong::REQUIRED_ARGUMENT],
+      ['--wp-content-dir', GetoptLong::REQUIRED_ARGUMENT],
+      ['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],
+      ['--config-file', '-c', GetoptLong::REQUIRED_ARGUMENT],
       ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
-      #['--basic-auth', GetoptLong::REQUIRED_ARGUMENT]
+      ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 

@@ -242,13 +242,13 @@ describe Browser do
     end
 
     it 'should merge the basic-auth' do
-      @browser.basic_auth = 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
+      @browser.basic_auth = 'username:password'
       expected_params = {
         disable_ssl_host_verification: true,
         disable_ssl_peer_verification: true,
         cache_timeout:                 @json_config_without_proxy['cache_timeout'],
         headers:                       {
-          'Authorization' => 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==',
+          'Authorization' => 'Basic dXNlcm5hbWU6cGFzc3dvcmQ=',
           'user-agent'    => @browser.user_agent
         }
       }

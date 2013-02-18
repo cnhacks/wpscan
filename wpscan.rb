@@ -67,7 +67,7 @@ begin
   plugins.register(
     UpdaterPlugin.new,
     BrowserOptionsOverridePlugin.new,
-    CheckerPlugin.new,
+    TargetCheckerPlugin.new,
     WpCustomDirectoriesPlugin.new
   )
 

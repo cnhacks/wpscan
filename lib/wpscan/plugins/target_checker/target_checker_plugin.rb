@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-class CheckerPlugin < WpscanPlugin
+class TargetCheckerPlugin < WpscanPlugin
 
   def initialize
     super(author: 'WPScanTeam')
