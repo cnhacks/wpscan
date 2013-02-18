@@ -122,16 +122,6 @@ if RUBY_VERSION < '1.9'
   end
 end
 
-# loading the updater
-require_files_from_directory(UPDATER_LIB_DIR)
-@updater = UpdaterFactory.get_updater(ROOT_DIR)
-
-if @updater
-  REVISION = @updater.local_revision_number()
-else
-  REVISION = 'NA'
-end
-
 # our 1337 banner
 def banner
   puts '____________________________________________________'
@@ -140,7 +130,7 @@ def banner
   puts '  \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  '
   puts '   \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ '
   puts '    \\  /\\  /  | |     ____) | (__| (_| | | | |'
-  puts "     \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_| v#{WPSCAN_VERSION}r#{REVISION}"
+  puts "     \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_| v#{WPSCAN_VERSION}"
   puts
   puts '    WordPress Security Scanner by the WPScan Team'
   puts ' Sponsored by the RandomStorm Open Source Initiative'

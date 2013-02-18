@@ -242,7 +242,6 @@ class WpscanOptions
       ['--verbose', '-v', GetoptLong::NO_ARGUMENT],
       ['--proxy', GetoptLong::REQUIRED_ARGUMENT],
       ['--proxy-auth', GetoptLong::REQUIRED_ARGUMENT],
-      ['--update', GetoptLong::NO_ARGUMENT],
       ['--follow-redirection', GetoptLong::NO_ARGUMENT],
       ['--wp-content-dir', GetoptLong::REQUIRED_ARGUMENT],
       ['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],

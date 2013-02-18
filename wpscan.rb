@@ -57,6 +57,33 @@ File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 banner()
 
 begin
+
+  option_parser = CustomOptionParser.new('Usage: ./wpscan.rb [options]')
+  option_parser.separator ''
+  option_parser.add(['-v', '--verbose', 'Verbose output'])
+  option_parser.add(['-u', '--url TARGET_URL', 'The WordPress URL/domain to scan'])
+
+  plugins = Plugins.new(option_parser)
+  plugins.register(
+    UpdaterPlugin.new
+  )
+
+  options = option_parser.results
+
+  if options.empty?
+    raise "No option supplied\n\n#{option_parser}"
+  end
+
+  plugins.each do |plugin|
+    if plugin.is_a?(WpscanPlugin)
+      wp_target ||= WpTarget.new(options[:url], options)
+
+      plugin.run(wp_target, options)
+    else
+      plugin.run(options)
+    end
+  end
+
   wpscan_options = WpscanOptions.load_from_arguments
 
   unless wpscan_options.has_options?
@@ -67,21 +94,6 @@ begin
     help()
     usage()
     exit
-  end
-
-  # Check for updates
-  if wpscan_options.update
-    if !@updater.nil?
-      if @updater.has_local_changes?
-        puts "#{red('[!]')} Local file changes detected, an update will override local changes, do you want to continue updating? [y/n]"
-        Readline.readline =~ /^y/i ? @updater.reset_head : raise('Update aborted')
-      end
-      puts @updater.update()
-    else
-      puts 'Svn / Git not installed, or wpscan has not been installed with one of them.'
-      puts 'Update aborted'
-    end
-    exit(1)
   end
 
   wp_target = WpTarget.new(wpscan_options.url, wpscan_options.to_h)

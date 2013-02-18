@@ -77,7 +77,6 @@ def help
   puts 'Some values are settable in conf/browser.conf.json :'
   puts '  user-agent, proxy, proxy-auth, threads, cache timeout and request timeout'
   puts
-  puts '--update   Update to the latest revision'
   puts '--url   | -u <target url>  The WordPress URL/domain to scan.'
   puts '--force | -f Forces WPScan to not check if the remote site is running WordPress.'
   puts '--enumerate | -e [option(s)]  Enumeration.'
