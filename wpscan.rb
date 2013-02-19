@@ -70,7 +70,9 @@ begin
     BrowserOptionsOverridePlugin.new,
     TargetCheckerPlugin.new,
     WpCustomDirectoriesPlugin.new,
-    DiscoveryPlugin.new
+    runtime = RunTimePlugin.new,
+    DiscoveryPlugin.new,
+    runtime
   )
 
   options = option_parser.results
@@ -90,12 +92,6 @@ begin
   end
 
   exit(0)
-
-  # Output runtime data
-  start_time = Time.now
-  puts "| URL: #{wp_target.url}"
-  puts "| Started on #{start_time.asctime}"
-  puts
 
   if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
       puts
@@ -271,12 +267,7 @@ begin
     end
   end
 
-  stop_time = Time.now
-  puts
-  puts green("[+] Finished at #{stop_time.asctime}")
-  elapsed = stop_time - start_time
-  puts green("[+] Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
-  exit() # must exit!
+
 rescue => e
   puts red("[ERROR] #{e.message}")
   puts red('Trace :')
