@@ -104,6 +104,33 @@ class WpTarget < WebSite
     WpVersion.find(@uri, wp_content_dir)
   end
 
+  def wp_content_dir
+    unless @wp_content_dir
+      index_body = Browser.instance.get(@uri.to_s).body
+      # Only use the path because domain can be text or an ip
+      uri_path = @uri.path
+
+      if index_body[/\/wp-content\/(?:themes|plugins)\//i]
+        @wp_content_dir = 'wp-content'
+      else
+        domains_excluded = '(?:www\.)?(facebook|twitter)\.com'
+        @wp_content_dir  = index_body[/(?:href|src)\s*=\s*(?:"|').+#{Regexp.escape(uri_path)}((?!#{domains_excluded})[^"']+)\/(?:themes|plugins)\/.*(?:"|')/i, 1]
+      end
+    end
+    @wp_content_dir
+  end
+
+  def wp_plugins_dir
+    unless @wp_plugins_dir
+      @wp_plugins_dir = "#{wp_content_dir}/plugins"
+    end
+    @wp_plugins_dir
+  end
+
+  def wp_plugins_dir_exists?
+    Browser.instance.get(@uri.merge(wp_plugins_dir)).code != 404
+  end
+
   def has_debug_log?
     # We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)
     response_body = Browser.instance.get(debug_log_url(), headers: {'range' => 'bytes=0-700'}).body

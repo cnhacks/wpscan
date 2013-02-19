@@ -17,8 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require File.dirname(__FILE__) + '/wp_target'
-
 class WpCustomDirectoriesPlugin < WpscanPlugin
 
   def initialize
