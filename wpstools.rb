@@ -34,7 +34,8 @@ begin
   plugins.register(
     CheckerPlugin.new,
     ListGeneratorPlugin.new,
-    StatsPlugin.new
+    StatsPlugin.new,
+    PluginGeneratorPlugin.new
   )
 
   options = option_parser.results
