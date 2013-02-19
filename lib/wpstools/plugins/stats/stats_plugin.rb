@@ -17,8 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-# line below disabled because there is an issue with the load (WPScanPlugin not found)
-
 require 'wpscan/wp_enumerator'
 require 'wpscan/wp_item'
 
