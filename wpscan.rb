@@ -62,6 +62,7 @@ begin
   option_parser.separator ''
   option_parser.add(['-v', '--verbose', 'Verbose output'])
   option_parser.add(['-u', '--url TARGET_URL', 'The WordPress URL/domain to scan'])
+  option_parser.add(['-c', '--config-file FILE', 'Use the specified config file'])
 
   plugins = Plugins.new(option_parser)
   plugins.register(
