@@ -18,7 +18,9 @@
 #++
 
 # line below disabled because there is an issue with the load (WPScanPlugin not found)
-#require_files_from_directory(WPSCAN_LIB_DIR, '**/*.rb')
+
+require 'wpscan/wp_enumerator'
+require 'wpscan/wp_item'
 
 class StatsPlugin < Plugin
 
