@@ -18,11 +18,6 @@
 #++
 
 class WpTarget < WebSite
-  include WpReadme
-  include WpFullPathDisclosure
-  include WpConfigBackup
-  include WpLoginProtection
-  include Malwares
   include WpUsernames
   include WpTimthumbs
   include WpPlugins
@@ -94,16 +89,6 @@ class WpTarget < WebSite
     [200, 301, 302, 401, 403, 500, 400]
   end
 
-  # return WpTheme
-  def theme
-    WpTheme.find(@uri)
-  end
-
-  # return WpVersion
-  def version
-    WpVersion.find(@uri, wp_content_dir)
-  end
-
   def wp_content_dir
     unless @wp_content_dir
       index_body = Browser.instance.get(@uri.to_s).body
@@ -131,67 +116,4 @@ class WpTarget < WebSite
     Browser.instance.get(@uri.merge(wp_plugins_dir)).code != 404
   end
 
-  def has_debug_log?
-    # We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)
-    response_body = Browser.instance.get(debug_log_url(), headers: {'range' => 'bytes=0-700'}).body
-    response_body[%r{\[[^\]]+\] PHP (?:Warning|Error|Notice):}] ? true : false
-  end
-
-  def debug_log_url
-    @uri.merge("#{wp_content_dir()}/debug.log").to_s
-  end
-
-  # Script for replacing strings in wordpress databases
-  # reveals databse credentials after hitting submit
-  # http://interconnectit.com/124/search-and-replace-for-wordpress-databases/
-  def search_replace_db_2_url
-    @uri.merge('searchreplacedb2.php').to_s
-  end
-
-  def search_replace_db_2_exists?
-    resp = Browser.instance.get(search_replace_db_2_url)
-    resp.code == 200 && resp.body[%r{by interconnect}i]
-  end
-
-  # Should check wp-login.php if registration is enabled or not
-  def registration_enabled?
-    resp = Browser.instance.get(registration_url)
-    # redirect only on non multi sites
-    if resp.code == 302 and resp.headers_hash['location'] =~ /wp-login\.php\?registration=disabled/i
-      enabled = false
-    # multi site registration form
-    elsif resp.code == 200 and resp.body =~ /<form id="setupform" method="post" action="[^"]*wp-signup\.php[^"]*">/i
-      enabled = true
-    # normal registration form
-    elsif resp.code == 200 and resp.body =~ /<form name="registerform" id="registerform" action="[^"]*wp-login\.php[^"]*"/i
-      enabled = true
-    # registration disabled
-    else
-      enabled = false
-    end
-    enabled
-  end
-
-  def registration_url
-    is_multisite? ? @uri.merge('wp-signup.php') : @uri.merge('wp-login.php?action=register')
-  end
-
-  def is_multisite?
-    unless @multisite
-      # when multi site, there is no redirection or a redirect to the site itself
-      # otherwise redirect to wp-login.php
-      url = @uri.merge('wp-signup.php')
-      resp = Browser.instance.get(url)
-      if resp.code == 302 and resp.headers_hash['location'] =~ /wp-login\.php\?action=register/
-        @multisite = false
-      elsif resp.code == 302 and resp.headers_hash['location'] =~ /wp-signup\.php/
-        @multisite = true
-      elsif resp.code == 200
-        @multisite = true
-      else
-        @multisite = false
-      end
-    end
-    @multisite
-  end
 end
