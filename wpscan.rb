@@ -19,7 +19,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-$: << '.'
+$: << '.' # Needed to be able to call the scrit from outside this directory
 require File.dirname(__FILE__) + '/lib/wpscan/wpscan_helper'
 
 def output_vulnerabilities(vulns)

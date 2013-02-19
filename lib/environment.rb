@@ -30,7 +30,7 @@ begin
   require 'digest/sha1'
   require 'readline'
   require 'base64'
-  require 'cgi'
+  #require 'cgi' not used
   require 'rbconfig'
   require 'pp'
   # Third party libs
@@ -39,8 +39,10 @@ begin
   require 'json'
   require 'nokogiri'
   # Custom libs
-  require "#{LIB_DIR}/browser"
-  require "#{LIB_DIR}/cache_file_store"
+  require 'browser'
+  require 'cache_file_store'
+  require 'common/custom_option_parser'
+
 rescue LoadError => e
   puts "[ERROR] #{e}"
 
